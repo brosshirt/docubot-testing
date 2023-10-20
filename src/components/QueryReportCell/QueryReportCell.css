@@ -1,0 +1,31 @@
+.queryReportCell {
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    margin: 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items: center;
+    background-color: #f9f9f9;
+    min-width: 5vw;
+    max-width: 20vw; /* ajusta según lo que necesites */
+    min-height: 100%;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+.queryReportCell .name {
+    font-weight: bold;
+}
+
+.queryReportCell .value {
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%; 
+}
+
+.queryReportCell:hover {
+    max-height: none; /* quitar la restricción de altura al hacer hover */
+}
+
