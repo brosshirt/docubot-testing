@@ -1,0 +1,22 @@
+.button-csv {
+    padding: 10px 15px;
+    font-size: 14px;
+    background-color: #e6f2ff;  /* Color de fondo azul claro */
+    border: 1px solid #a8c4e6; /* Bordes en un azul más oscuro */
+    border-radius: 5px; /* Bordes redondeados para darle un toque suave */
+    color: #3a5b8e; /* Texto en azul oscuro para contraste */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s; /* Animación al hacer hover y click */
+    position: absolute; /* Posicionar en la esquina superior izquierda */
+    top: 10px; 
+    left: 10px;
+    text-decoration: none; /* Si decides usar un enlace <a> en lugar de un <button> */
+}
+
+.button-csv:hover {
+    background-color: #d4e4ff; /* Un poco más claro al hacer hover */
+}
+
+.button-csv:active {
+    transform: scale(0.98); /* Efecto de presión al hacer clic */
+}
