@@ -1,19 +1,17 @@
 import React from 'react';
-import QueryReportBox from '../QueryReportCell/QueryReportCell';
+import QueryReportCell from '../QueryReportCell/QueryReportCell';
 import './QueryReportRow.css';
 
-function QueryReportRow({ data }) {
-    const individualProperties = Object.entries(data).map(([key, value]) => { // tipo [{k:2}, {Model: 3.5}...]
-        return { [key]: value };
-    });
+function QueryReportRow({ data }) {    
     
     return (
         <div className="queryReportRow">
-            {individualProperties.map((item, index) => (
-                <QueryReportBox key={index} item={item} />
+            {Object.entries(data).map(([key, value], index) => ( // for every key, value in the object
+                <QueryReportCell key={index} label={key} value={value} />
             ))}
         </div>
     );
 }
 
 export default QueryReportRow;
+

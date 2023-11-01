@@ -1,17 +1,18 @@
 import React from 'react';
+import { stringToHtml } from '../../lib/generalLib';
 import './QueryReportCell.css';
 
-function QueryReportCell({ item }) {
-    const key = Object.keys(item)[0];
-    const value = item[key];
+function QueryReportCell({ label, value }) {    
+    
+    
+    const htmlValue = stringToHtml(value)
     
     return (
         <div className="queryReportCell">
-            <span className="name">{key}</span>
-            <p className="value" title={value}>{value}</p>
+            <span className="name">{label}</span>
+            <p className="value" title={value} dangerouslySetInnerHTML={{ __html: htmlValue }} />
         </div>
     );
 }
-
 
 export default QueryReportCell;

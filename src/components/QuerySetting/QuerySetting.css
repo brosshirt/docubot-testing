@@ -1,4 +1,4 @@
-.input-var-box {
+.querySetting {
     display: flex;
     flex-direction: row;
     border: 1px solid #ccc;
@@ -8,11 +8,11 @@
     background-color: #f7f7f7;
 }
 
-.input-var-box > *{
+.querySetting > *{
     margin: 5px;
 }
 
-.input-var-name {
+.querySetting {
     font-weight: bold;
 }
 

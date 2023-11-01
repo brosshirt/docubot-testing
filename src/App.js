@@ -1,7 +1,9 @@
-import InputBox from './components/InputBox/InputBox';
+import QuerySettings from './components/QuerySettings/QuerySettings';
 import QueryReport from './components/QueryReport/QueryReport';
-import { everyCombo, executeQueries, getOptions } from './lib/basicLib';
-import { testingSets } from './lib/testingSets'; 
+import { getQueriesList, runQueryProcess } from './lib/queryLib.js';
+import DownloadCSV from './components/DownloadCSV/DownloadCSV'
+import ResponseEvaluation from './components/ResponseEvaluation/ResponseEvaluation'
+import { defaultQuerySettings } from './hardCoded/defaultQuerySettings';
 import React, { useState } from 'react';
 import './App.css';
 
@@ -9,39 +11,32 @@ function App() {
 
   const [execDisable, setExecDisable] = useState(false);
 
+  // this is the object that contains everything that is displayed in the graph (the chatGPT responses)
   const [outputGraph, setOutputGraph] = useState([])
 
-  const [inputBoxState, setInputBoxState] = useState([
-    { name: 'Question', isChecked: false, options: Object.keys(testingSets), option: "n=5", textResponse: ''},
-    { name: 'k', isChecked: false, options: [3,5,7,9], option: 3, textResponse: ''},
-    { name: 'Retriever Type', isChecked: false, options: ["vectorStore", "hyde"], option: 'vectorStore', textResponse: ''},
-    { name: 'Model', isChecked: false, options: ['gpt-4', 'gpt-3.5-turbo-16k'], option: 'gpt-3.5-turbo-16k', textResponse: ''},
-  ]);
+  // contains all of the information needed to execute the queries (k: 3, model: all etc)
+  const [querySettingsState, setQuerySettingsState] = useState(defaultQuerySettings);
 
   async function execute(){ 
 
     setExecDisable(true)
-  
-    if (outputGraph.length !== 0){
-      setOutputGraph([])
-    }
+    setOutputGraph([])
     
-    let options = getOptions(inputBoxState) // esas son todas las permutaciones disponibles para cada input
-    let queries = everyCombo(options) // toda la información que necesitamos para hacer un query, estamos para pasar al API
-  
+    // Get all of the individual queries based on the settings inputted
+    const queries = getQueriesList(querySettingsState)
 
-    executeQueries(queries, setOutputGraph)
-    .then(v => { //eso es para la version synchronous
+    runQueryProcess(queries, setOutputGraph)
+    .then(v => { 
       setExecDisable(false)
     })
-
-    
-
   }
 
   return (
     <div className="App">
-      <InputBox inputBoxState={inputBoxState} setInputBoxState={setInputBoxState} executeQuery={execute} execDisable={execDisable}/> 
+      {/* <ResponseEvaluation/> */}
+      <DownloadCSV outputGraph={outputGraph}/>
+      <ResponseEvaluation outputGraph={outputGraph} setOutputGraph={setOutputGraph}/>
+      <QuerySettings querySettingsState={querySettingsState} setQuerySettingsState={setQuerySettingsState} execute={execute} execDisable={execDisable}/> 
       <QueryReport outputGraph={outputGraph}/>
     </div>
   );

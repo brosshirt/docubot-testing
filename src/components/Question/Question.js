@@ -1,14 +1,8 @@
 import React from 'react';
 import './Question.css';
 
-function Question({localState, setLocalState, updateIV}) {
+function Question({querySettingState, setQuerySettingState}) {
     
-    const handleTextChange = (e) => {
-        setLocalState(prevState => ({
-            ...prevState,
-            textResponse: e.target.value
-        }));
-    };
     
     return (
         <div className="questionBox">
@@ -17,16 +11,16 @@ function Question({localState, setLocalState, updateIV}) {
                 <label>IV:</label>
                 <input 
                     type="checkbox" 
-                    checked={localState.isChecked} 
-                    onChange={(e) => updateIV(e)}
+                    checked={querySettingState.isIV} 
+                    onChange={(e) => setQuerySettingState(prevState => ({...prevState, isIV: e.target.value}))}
                 />
                 
             </div>
             <textarea 
                 className="textBlock" 
                 placeholder="Write your question here..."
-                value={localState.textResponse}
-                onChange={handleTextChange}
+                value={querySettingState.textResponse}
+                onChange={(e) => setQuerySettingState(prevState => ({...prevState, textResponse: e.target.value}))}
             ></textarea>
 
         </div>

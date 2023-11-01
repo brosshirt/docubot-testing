@@ -1,0 +1,38 @@
+.eval {
+    padding: 5px 7.5px;
+    font-size: 14px;
+    background-color: #e6f2ff;
+    border: 1px solid #a8c4e6;
+    border-radius: 5px;
+    color: #3a5b8e;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    margin-bottom: 1px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.eval:hover {
+    background-color: #d4e4ff;
+}
+
+.eval:active {
+    transform: scale(0.98);
+}
+
+.button-container {
+    position: absolute;
+    top: 10px; 
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.button-container > button:disabled,
+.button-container > input:disabled + label {
+    background-color: #f2f2f2;
+    color: #aaa;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
