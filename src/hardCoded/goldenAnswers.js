@@ -4,11 +4,11 @@ export const goldenAnswers = [
         articleIds: [6862, 25750],
         points: 
         `Correct-Points: """
-            - You should use the parm rule
-            - The syntax for the parm rule is similar to "parm(in: &varName)" (note: in the actual response, it’s possible that &varName is replaced with another name and that “in” is replaced with “inout” or “out”, these changes should not affect the accuracy of the response)
+            - *The answer explicitly mentions the "parm rule"
+            - The syntax for the parm rule is "parm([direction]: [variable_name])" where "direction": ['in', 'out', 'inout'] and "variable_name": any string
         """
         Incorrect-Points: """
-            - *Offers lists of valid rules for web panels and work panels
+            - *The answer explicitly lists more than 2 acceptable rules that can be used
         """`,
         evaluateJSON: {
             green:{
@@ -20,29 +20,29 @@ export const goldenAnswers = [
                 maximumIncorrect: 0
             }
         }
-        
     },
     {
         question: `I have a table with the properties “row style” and “column style”, can you please tell me what these properties do?`,
         articleIds: [19487],
         points: 
         `Correct-Points: """
+            - The row style property is used to change the size of the rows
+            - The column style property is used to change the size of the columns
             - The values for the row style property can be expressed using %, dip, or pd
             - The values for the column style property can be expressed using %, dip, or pd        
         """
         Incorrect-Points: """
-            - The row style is used to change the general style of the row
-            - The column style is used to change the general style of the column
+            - *The response contains something about changing the general style of a row or column
             - Something about using a class or a theme
         """`,
         evaluateJSON: {
             green:{
-                minimumCorrect: 2,
+                minimumCorrect: 4,
                 maximumIncorrect: 0
             },
             yellow:{
                 minimumCorrect: 1,
-                maximumIncorrect: 3
+                maximumIncorrect: Number.MAX_SAFE_INTEGER
             }
         }
     },
@@ -52,9 +52,9 @@ export const goldenAnswers = [
         points: 
         `Correct-Points: """
             - You can use the toNumeric method
-            - The toNumeric method is used with syntax similar to &myNum = &myTxt.toNumeric, (note: The variable names &myNum and &myTxt might be different in the provided response, this does not affect the accuracy of the response)
+            - The syntax for the toNumeric method is "[variable_name] = [variable_name].toNumeric()" where "variable_name": any string
             - You can use the Val function
-            - The syntax for the Val function is similar to &myNum = Val(&myTxt), (note: The variable names &myNum and &myTxt might be different in the provided response, this does not affect the accuracy of the response)
+            - The syntax for the Val function is "[variable_name] = Val([variable_name])" where "variable_name": any string
         """
         Incorrect-Points: """
         """
@@ -65,8 +65,8 @@ export const goldenAnswers = [
                 maximumIncorrect: 0
             },
             yellow:{
-                minimumCorrect: Number.MAX_SAFE_INTEGER,
-                maximumIncorrect: Number.MIN_SAFE_INTEGER
+                minimumCorrect: 1,
+                maximumIncorrect: Number.MAX_SAFE_INTEGER
             }
         }
     },
@@ -76,12 +76,12 @@ export const goldenAnswers = [
         points: 
         `Correct-Points: """
          - You can use the Round function
-         - You can round &myVar to the nearest 2 decimal places with syntax similar to &myVar = Round(&myVar, 2). (note: The variable name &myVar might be different in the provided response, this does not affect the accuracy of the response)
-         - You can use the Round method
+         - An appropriate syntax is "[variable_name] = Round([variable_name], [decimal_places])" where "variable_name": any string and "decimal_places": any value
          - You can  round &myVar to the nearest 2 decimal places with syntax similar to &myVar.Round(2). (note: The variable name &myVar might be different in the provided response, this does not affect the accuracy of the response)
-        """
+         - An appropriate syntax is "[variable_name].Round([decimal_places])" where "variable_name": any string and "decimal_places": any value
+         """
         Incorrect-Points """
-         - *The response offers syntax similar to Round(numeric-expression, nK) as a general rule and then puts it into practice with mismatched syntax similar to &myVar = &myVar.Round(2) 
+         - *The response offers syntax "[variable_name] = Round([variable_name], [decimal_places])" as a general rule and then puts it into practice with mismatched syntax "[variable_name].Round([decimal_places])"
         """`,
         evaluateJSON: {
             green:{
@@ -105,14 +105,12 @@ export const goldenAnswers = [
         - You need to set the call protocol property to HTTP
         """
         Incorrect-Points """
-        - Something about java reports and jar files
-        - A code snippet to put in the source section of your procedure
         """
         `,
         evaluateJSON: {
             green:{
                 minimumCorrect: 4,
-                maximumIncorrect: 1
+                maximumIncorrect: 0
             },
             yellow:{
                 minimumCorrect: 1,
@@ -150,11 +148,12 @@ export const goldenAnswers = [
         points: 
         `Correct-points: """
         - You should use the for each command
-        - You should use syntax similar to 
-                “For each Region
-                    print myPrintblock
-                Endfor” 
-            where Region and myPrintblock are variable names that are interchangeable
+        - You should use syntax  "
+                For each [transaction_name]
+                    print [printblock_name]
+                Endfor
+            " 
+            where "transaction_name": any string and "printblock_name" any string
         """
         Incorrect-points: """
         - You should use nested for each commands
@@ -178,7 +177,7 @@ export const goldenAnswers = [
         `Correct-Points: """
         - Subtypes allow you define separate names for the same attribute
         - Subtypes are defined using Subtype Groups
-        - An example in which two subtype groups are created so that a transaction can make multiple references to the same transaction
+        - A detailed example in which two subtype groups are created so that a transaction can make multiple references to the same transaction
         """
         Incorrect-Points: """
         """   
@@ -196,10 +195,10 @@ export const goldenAnswers = [
     },
     {
         question: `How do I create my own data type in GeneXus? I would like to create my own type “ID” that I use in various transactions so that I don’t need to continually set the same properties for my attributes over and over again.`,
-        articleIds: [53067, 7221, 49076],
+        articleIds: [53067, 34180, 49076],
         points: 
         `Correct-Points: """
-        - You can use a domain 
+        - *The answer explicitly mentions the use of a "Domain" 
         - Steps on how to create your domain
         """
         Incorrect-Points: """
@@ -209,7 +208,7 @@ export const goldenAnswers = [
         `,
         evaluateJSON: {
             green:{
-                minimumCorrect: 3,
+                minimumCorrect: 2,
                 maximumIncorrect: 0
             },
             yellow:{

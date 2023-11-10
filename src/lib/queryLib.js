@@ -55,8 +55,14 @@ async function getChatResponse(query) {
 function extractChatResponse(data) {
     if (data.error) {
         if (data.result && data.result.messages) {
+            if (data.result.messages[0].includes("model's maximum context length is")){
+                return { text: "tokenLimit", articles: "" };
+            }
             return { text: data.result.messages[0], articles: "" };
         } else if (data.error.message) {
+            if (data.result.messages[0].includes("model's maximum context length is")){
+                return { text: "tokenLimit", articles: "" };
+            }
             return { text: data.error.message, articles: "" };
         }
         return { text: data, articles: "" };
@@ -124,7 +130,8 @@ function getArticles(documents){
     let output = ""
 
     for (const document of documents){
-        
+        console.log("this is the full document", document)
+
         output += 
         `${document.pageContent.slice(0,100)}
 
@@ -152,7 +159,7 @@ function getUpdateProfileBody(query){
               "prompt": systemPrompts[query.PromptType]
             },
             "retriever": {
-              "type": query["Retriever Type"], /* vectorStore, selfQuery, hyde, contextualCompression */
+              "type": "vectorStore", /* vectorStore, selfQuery, hyde, contextualCompression */
             "prompt": `
                 Please answer the question in the context of GeneXus.
                 Question: {question}

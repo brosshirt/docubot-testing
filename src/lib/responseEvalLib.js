@@ -1,6 +1,7 @@
 import { saiaMode } from "../hardCoded/saiaModes"
 import { goldenAnswers } from "../hardCoded/goldenAnswers"
 import { findLastJsonInString } from "./generalLib"
+import { functionLimiter } from "./myBottleneck"
 
 export async function evaluateResponses(unevaluatedResponses){
     let promises = []
@@ -52,7 +53,9 @@ async function evaluate(unevaluatedResponse) {
     const evalQuery = `${goldenAnswer.points}\nAnswer: """${unevaluatedResponse.Response}"""`
     
     try {
-        const chatResponse = await getChatResponse(evalQuery)
+        const limitedGetChatResponse = functionLimiter(getChatResponse, 250)
+        const chatResponse = await limitedGetChatResponse(evalQuery)
+        
         const gptJSON = findLastJsonInString(chatResponse)
         console.log(unevaluatedResponse.Question)
         console.log(gptJSON)
