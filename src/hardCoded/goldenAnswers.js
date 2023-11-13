@@ -177,7 +177,7 @@ export const goldenAnswers = [
         `Correct-Points: """
         - Subtypes allow you define separate names for the same attribute
         - Subtypes are defined using Subtype Groups
-        - A detailed example in which two subtype groups are created so that a transaction can make multiple references to the same transaction
+        - A detailed and concrete example in which two subtype groups are created so that a transaction can make multiple references to the same transaction
         """
         Incorrect-Points: """
         """   
@@ -202,7 +202,7 @@ export const goldenAnswers = [
         - Steps on how to create your domain
         """
         Incorrect-Points: """
-        - Something about creating a new transaction object and defining its attributes
+        - *The answer explicitly recommends the creation of a new transaction
         """
         
         `,
@@ -222,7 +222,7 @@ export const goldenAnswers = [
         articleIds: [42569],
         points: 
         `Correct-Points: """
-        - You can add a second level to your “Store” transaction
+        - *The response clearly suggests the addition of a level to the Store transaction
         - You must right click and then click “Insert level”
         """
         Incorrect-Points: """
