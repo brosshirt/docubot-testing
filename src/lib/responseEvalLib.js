@@ -23,7 +23,7 @@ function errorResponse(message, response){
         "count-correct": "error",
         "total-correct": "error",
         "count-incorrect": "error",
-        "total-incorrect": "error",
+        "total-incorrect": "error"
     }
 }
 
@@ -53,7 +53,7 @@ async function evaluate(unevaluatedResponse) {
     const evalQuery = `${goldenAnswer.points}\nAnswer: """${unevaluatedResponse.Response}"""`
     
     try {
-        const limitedGetChatResponse = functionLimiter(getChatResponse, 250)
+        const limitedGetChatResponse = functionLimiter(getChatResponse, 500)
         const chatResponse = await limitedGetChatResponse(evalQuery)
         
         const gptJSON = findLastJsonInString(chatResponse)

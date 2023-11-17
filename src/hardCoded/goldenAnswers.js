@@ -52,7 +52,7 @@ export const goldenAnswers = [
         points: 
         `Correct-Points: """
             - You can use the toNumeric method
-            - The syntax for the toNumeric method is "[variable_name] = [variable_name].toNumeric()" where "variable_name": any string
+            - The syntax for the toNumeric methFod is "[variable_name] = [variable_name].toNumeric()" where "variable_name": any string
             - You can use the Val function
             - The syntax for the Val function is "[variable_name] = Val([variable_name])" where "variable_name": any string
         """
@@ -76,7 +76,7 @@ export const goldenAnswers = [
         points: 
         `Correct-Points: """
          - You can use the Round function
-         - An appropriate syntax is "[variable_name] = Round([variable_name], [decimal_places])" where "variable_name": any string and "decimal_places": any value
+         - An appropriate syntax is "Round([variable_name], [decimal_places])" where "variable_name": any string and "decimal_places": any value
          - You can  round &myVar to the nearest 2 decimal places with syntax similar to &myVar.Round(2). (note: The variable name &myVar might be different in the provided response, this does not affect the accuracy of the response)
          - An appropriate syntax is "[variable_name].Round([decimal_places])" where "variable_name": any string and "decimal_places": any value
          """
@@ -222,7 +222,7 @@ export const goldenAnswers = [
         articleIds: [42569],
         points: 
         `Correct-Points: """
-        - *The response clearly suggests the addition of a level to the Store transaction
+        - *The response clearly suggests the addition of a "level" to the Store transaction
         - You must right click and then click “Insert level”
         """
         Incorrect-Points: """
@@ -240,6 +240,218 @@ export const goldenAnswers = [
             }
         }
     },
+    {
+        question: `Write the code to display the date that is 3 years before the current date`,
+        articleIds: [8317], 
+        points: 
+        `Correct-Points: """
+            - You can use the addYr function
+            - The syntax for the addYr function is "AddYr([date], [yearsToAdd])" where "date": any date object including Today() or Now() and "yearsToAdd": any number 
+            - *The response offers a multi-line code solution that involves the YMDtoD function and extracting the year from the current date with some arithmetic
+        """
+        Incorrect-Points: """
+        """
+        `,
+        evaluateJSON: {
+            green:{
+                minimumCorrect: 2,
+                maximumIncorrect: 0
+            },
+            yellow:{
+                minimumCorrect: 1,
+                maximumIncorrect: Number.MAX_SAFE_INTEGER
+            }
+        }
+    },
+    {
+        question: `Write the code to concatenate two variables &CongratulationsMessage and &Username with a space in between them`,
+        articleIds: [8352],
+        points: 
+        `Correct-Points: """
+            - Offers syntax for the Concat function like "Concat(&CongratulationsMessage,&Username,' ')" 
+            - Offers syntax using the + operator like &CongratulationsMessage + ' ' + &Username
+        """
+        Incorrect-Points: """
+        """
+        `,
+        evaluateJSON: {
+            green:{
+                minimumCorrect: 1,
+                maximumIncorrect: 0
+            },
+            yellow:{
+                minimumCorrect: Number.MAX_SAFE_INTEGER,
+                maximumIncorrect: Number.MIN_SAFE_INTEGER
+            }
+        }
+    },
+    {
+        question: `Write the code to get the last four digits of a string variable &SocialSecurityNumber`,
+        articleIds: [8527, 12713],
+        points: 
+        `Correct-Points: """
+            - Offers syntax for the Substr function like "SubStr(&SocialSecurityNumber,[startIndex],4) "startIndex": anything that evaluates to a number
+            - Offers syntax for the Substring method like "&SocialSecurityNumber.Substring([startIndex], 4) "startIndex": anything that evaluates to a number
+        """
+        Incorrect-Points: """
+            - *The response uses a length function syntax that isn't "length()" such as "len()" or "length"
+        """
+        `,
+        evaluateJSON: {
+            green:{
+                minimumCorrect: 1,
+                maximumIncorrect: 0
+            },
+            yellow:{
+                minimumCorrect: 1,
+                maximumIncorrect: Number.MAX_SAFE_INTEGER
+            }
+        }
+    },
+    {
+        question: `How do I get the ascii representation for a character in GeneXus`,
+        articleIds: [13973, 6852],
+        points: 
+        `Correct-Points: """
+            - You can use the Asc function
+            - The syntax for the Asc function is "Asc([myString])" where "myString": Any string
+        """
+        Incorrect-Points: """
+        """
+        `,
+        evaluateJSON: {
+            green:{
+                minimumCorrect: 2,
+                maximumIncorrect: 0
+            },
+            yellow:{
+                minimumCorrect: 1,
+                maximumIncorrect: Number.MAX_SAFE_INTEGER
+            }
+        }
+    },
+    {
+        question: `How do I define my transaction to throw an error message if the user tries to delete a record`,
+        articleIds: [8328, 6852],
+        points: 
+        `Correct-Points: """
+            - You can use the Delete function
+            - The syntax is "Error([errorMessage]) If Delete; where "errorMessage": Any string
+        """
+        Incorrect-Points: """
+        """
+        `,
+        evaluateJSON: {
+            green:{
+                minimumCorrect: 2,
+                maximumIncorrect: 0
+            },
+            yellow:{
+                minimumCorrect: 1,
+                maximumIncorrect: Number.MAX_SAFE_INTEGER
+            }
+        }
+    },
+    {
+        question: `How do I change the color of the text in my textblock within my panel, I'm using design systems`,
+        articleIds: [52179, 47379, 49309],
+        points: 
+        `Correct-Points: """
+            - You should write css-style code in the "styles" section of your design system object to define the "color" property for a particular class
+            - You can assign the class you defined to your TextBlock control in the Panel in order for the styles you wrote to take effect 
+            - You can assign the class via syntax similar to [TextBoxName].Class = "[ClassName]"
+        """"
+        Incorrect-Points: """
+        """
+        `,
+        evaluateJSON: {
+            green:{
+                minimumCorrect: 3,
+                maximumIncorrect: 0
+            },
+            yellow:{
+                minimumCorrect: 2,
+                maximumIncorrect: Number.MAX_SAFE_INTEGER
+            }
+        }
+    },
+    {
+        question: `How do I use the query object and queryViewer object to display a pie chart showing the number of cities associated with various countries, for example.`,
+        articleIds: [33991],
+        points: 
+        `Correct-Points: """
+            - In your query object, add attributes under the attributes node
+            - The attribute you use related to "cities" should be wrapped in a count() function in order to get the number of cities
+            - Set the object property of your QueryViewer to the name of the query object that you just created
+        """"
+        Incorrect-Points: """
+            - *The response explicitly mentions "AttractionName"
+        """
+        `,
+        evaluateJSON: {
+            green:{
+                minimumCorrect: 3,
+                maximumIncorrect: 0
+            },
+            yellow:{
+                minimumCorrect: 1,
+                maximumIncorrect: Number.MAX_SAFE_INTEGER
+            }
+        }
+    },
+    { // Eso es un ejemplo bueno de una pregunta que se va a poder contestar aún mejor cuando se puede leer imágenes
+        question: `How do I implement dark mode in my application? I'm using design systems`,
+        articleIds: [48692, 48693],
+        points: 
+        `Correct-Points: """
+            - Define a parameter for your design system object to handle color schemes
+            - Set up your design system for your tokens to take different colors values depending on the value of your color scheme variable 
+            - You can modify the value of your color scheme variable at runtime
+            - *The answer provides the syntax "tokens [designSystemName] (color-scheme: [light]|dark)" where "designSystemName": any string
+            - *The answer provides the syntax @color-scheme = [color-scheme]{[token_definitions]} where "color-scheme": your variable managing color scheme and "token_definitions" are your pseudo-css token definitions
+            - *The answer provides the syntax DesignSystem.setOption("color-scheme", [value]) where "value": Light | Dark
+        """"
+        Incorrect-Points: """
+            - *The answer contains a list of steps that includes something about converting an existing theme object into a design system object
+            - *The answer contains syntax like "...when @Light, when @Dark
+        """
+        `,
+        evaluateJSON: {
+            green:{
+                minimumCorrect: 6,
+                maximumIncorrect: 0
+            },
+            yellow:{
+                minimumCorrect: 3,
+                maximumIncorrect: 0
+            }
+        }
+    },
+    { // Eso es un ejemplo bueno de una pregunta que se va a poder contestar aún mejor cuando se puede leer imágenes
+        question: `I have a panel called “Photo.” I have another panel called “Home.” In the panel “Home,” I have a component control called “MyComponent.” When “Home” runs for the first time, I would like the content of “Photo” to be displayed inside of “MyComponent”. Can you provide me with the syntax to make this happen?`,
+        articleIds: [5404, 7011, 8359, 20509],
+        points: 
+        `Correct-Points: """
+            - *The answer provides the syntax "[component_name].Object = [panel_name].create([optional_parameters])" where "component_name": string, "panel_name": string, "optional_parameters": Can be blank or list of parameters
+            - *The answer provides the syntax "[component_name].Object = Create([panel_name],[optional_parameters])" where "component_name": string, "panel_name": string, "optional_parameters": Can be blank or list of parameters
+            - *The answer provides the syntax "[component_name].Object = CreateFromURL([link])" where "component_name": string, "link": string
+        """"
+        Incorrect-Points: """
+        """
+        `,
+        evaluateJSON: {
+            green:{
+                minimumCorrect: 1,
+                maximumIncorrect: 0
+            },
+            yellow:{
+                minimumCorrect: Number.MAX_SAFE_INTEGER,
+                maximumIncorrect: Number.MIN_SAFE_INTEGER
+            }
+        }
+    },
+    
+
 ]
 
 

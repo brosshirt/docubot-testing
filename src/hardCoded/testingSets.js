@@ -64,6 +64,19 @@ export const testingSets = {
         `How do I implement a transaction with 2 foreign keys to the same transaction?`,
         `Give me step by step instructions on how to implement a PDF list of all the records of my transaction “Countries”`,
         `How do you implement a many-to-one relationship in GeneXus transactions?`
+    ],
+    "Functions": [
+        `Write the code to display the date that is 3 years before the current date`,
+        `Write the code to concatenate two variables &CongratulationsMessage and &Username with a space in between them`,
+        `Write the code to get the last four digits of a string variable &SocialSecurityNumber`,
+        `How do I get the ascii representation for a character in GeneXus`,
+        `How do I define my transaction to throw an error message if the user tries to delete a record`
+    ],
+    "Objects-HowTo": [
+        `How do I change the color of the text in my textblock within my panel, I'm using design systems`,
+        `How do I use the query object and queryViewer object to display a pie chart showing the number of cities associated with various countries, for example.`,
+        `I have a panel called "Photo." I have another panel called "Home." In the panel "Home," I have a component control called "MyComponent." When "Home" runs for the first time, I would like the content of "Photo" to be displayed inside of "MyComponent". Can you provide me with the syntax to make this happen?`,
+        `How do I implement dark mode in my application? I'm using design systems`
     ]
 
 

@@ -1,6 +1,7 @@
 import { getOptions, everyCombo } from './generalLib';
 import { systemPrompts } from "../hardCoded/systemPrompts"
 import { saiaMode } from "../hardCoded/saiaModes"
+import { goldenAnswers } from "../hardCoded/goldenAnswers"
 
 
 
@@ -60,9 +61,6 @@ function extractChatResponse(data) {
             }
             return { text: data.result.messages[0], articles: "" };
         } else if (data.error.message) {
-            if (data.result.messages[0].includes("model's maximum context length is")){
-                return { text: "tokenLimit", articles: "" };
-            }
             return { text: data.error.message, articles: "" };
         }
         return { text: data, articles: "" };
@@ -78,6 +76,8 @@ async function executeQuery(query) {
         profile: saiaMode.PROFILE,
         question: query.Question
     }
+
+    console.log(query.Question)
 
     return fetch(saiaMode.EXECUTE_URL, {
         method: "POST",
@@ -130,7 +130,16 @@ function getArticles(documents){
     let output = ""
 
     for (const document of documents){
-        console.log("this is the full document", document)
+
+        let goldenArticles = goldenAnswers.map(item => item.articleIds).reduce((acc, current) => acc.concat(current), []);
+
+
+        if (goldenArticles.includes(parseInt(document.metadata.id, 10))) {
+            // Imprimir description, source y score separados por comas
+            console.log(`${document.metadata.description}, ${document.metadata.source}, ${document.score}`);
+        }
+
+        // console.log("this is the full document", document)
 
         output += 
         `${document.pageContent.slice(0,100)}
