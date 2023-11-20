@@ -247,9 +247,11 @@ export const goldenAnswers = [
         `Correct-Points: """
             - You can use the addYr function
             - The syntax for the addYr function is "AddYr([date], [yearsToAdd])" where "date": any date object including Today() or Now() and "yearsToAdd": any number 
-            - *The response offers a multi-line code solution that involves the YMDtoD function and extracting the year from the current date with some arithmetic
+            - *The response offers a code solution that uses the YMDtoD function and syntax [date].Year() where date is a date object
         """
         Incorrect-Points: """
+            - *The response says "AddYear" or "AddYears" instead of "AddYr"
+            - *The response uses syntax like Year([date])
         """
         `,
         evaluateJSON: {
@@ -259,7 +261,7 @@ export const goldenAnswers = [
             },
             yellow:{
                 minimumCorrect: 1,
-                maximumIncorrect: Number.MAX_SAFE_INTEGER
+                maximumIncorrect: 0
             }
         }
     },
@@ -268,7 +270,7 @@ export const goldenAnswers = [
         articleIds: [8352],
         points: 
         `Correct-Points: """
-            - Offers syntax for the Concat function like "Concat(&CongratulationsMessage,&Username,' ')" 
+            - Offers syntax for the Concat function like "Concat(&CongratulationsMessage,&Username,' ')" with the space as the third parameter
             - Offers syntax using the + operator like &CongratulationsMessage + ' ' + &Username
         """
         Incorrect-Points: """
@@ -280,8 +282,8 @@ export const goldenAnswers = [
                 maximumIncorrect: 0
             },
             yellow:{
-                minimumCorrect: Number.MAX_SAFE_INTEGER,
-                maximumIncorrect: Number.MIN_SAFE_INTEGER
+                minimumCorrect: 1,
+                maximumIncorrect: 1
             }
         }
     },
@@ -294,7 +296,7 @@ export const goldenAnswers = [
             - Offers syntax for the Substring method like "&SocialSecurityNumber.Substring([startIndex], 4) "startIndex": anything that evaluates to a number
         """
         Incorrect-Points: """
-            - *The response uses a length function syntax that isn't "length()" such as "len()" or "length"
+            - *The response uses a length function syntax that isn't "length()" such as "len()", "Len()" or "length"
         """
         `,
         evaluateJSON: {
@@ -335,10 +337,11 @@ export const goldenAnswers = [
         articleIds: [8328, 6852],
         points: 
         `Correct-Points: """
-            - You can use the Delete function
-            - The syntax is "Error([errorMessage]) If Delete; where "errorMessage": Any string
+            - *Explicitly mentions the delete function
+            - The syntax is "Error([errorMessage],[optional_parameteter]) If Delete; where "errorMessage": Any string and "optional_parameter" and be blank or a string
         """
         Incorrect-Points: """
+            - *The solution offers a long code sample different from the Error([errorMessage],[optional_parameteter]) sample that is meant to for more advanced error detection and reporting
         """
         `,
         evaluateJSON: {
@@ -358,8 +361,8 @@ export const goldenAnswers = [
         points: 
         `Correct-Points: """
             - You should write css-style code in the "styles" section of your design system object to define the "color" property for a particular class
-            - You can assign the class you defined to your TextBlock control in the Panel in order for the styles you wrote to take effect 
-            - You can assign the class via syntax similar to [TextBoxName].Class = "[ClassName]"
+            - Change the "class" of your TextBlock control for the styles you wrote to take effect 
+            - *The response shows syntax similar to [TextBoxName].Class = "[ClassName]" where "TextBoxName" is any string and "ClassName" is any string
         """"
         Incorrect-Points: """
         """
@@ -405,7 +408,7 @@ export const goldenAnswers = [
         points: 
         `Correct-Points: """
             - Define a parameter for your design system object to handle color schemes
-            - Set up your design system for your tokens to take different colors values depending on the value of your color scheme variable 
+            - *The response specifically mentions "tokens" taking different color values depending on the value of your color scheme variable 
             - You can modify the value of your color scheme variable at runtime
             - *The answer provides the syntax "tokens [designSystemName] (color-scheme: [light]|dark)" where "designSystemName": any string
             - *The answer provides the syntax @color-scheme = [color-scheme]{[token_definitions]} where "color-scheme": your variable managing color scheme and "token_definitions" are your pseudo-css token definitions
@@ -428,7 +431,7 @@ export const goldenAnswers = [
         }
     },
     { // Eso es un ejemplo bueno de una pregunta que se va a poder contestar aún mejor cuando se puede leer imágenes
-        question: `I have a panel called “Photo.” I have another panel called “Home.” In the panel “Home,” I have a component control called “MyComponent.” When “Home” runs for the first time, I would like the content of “Photo” to be displayed inside of “MyComponent”. Can you provide me with the syntax to make this happen?`,
+        question: `I have a panel called "Photo." I have another panel called "Home." In the panel "Home," I have a component control called "MyComponent." When "Home" runs for the first time, I would like the content of "Photo" to be displayed inside of "MyComponent". Can you provide me with the syntax to make this happen?`,
         articleIds: [5404, 7011, 8359, 20509],
         points: 
         `Correct-Points: """

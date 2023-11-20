@@ -14,7 +14,7 @@ export async function evaluateResponses(unevaluatedResponses){
 }
 
 // Returns the same row in the csv but with error messages for all the fields 
-function errorResponse(message, response){
+function errorResponse(message, response, chatResponse){
     return {
         ...response,
         foundArticle: false,
@@ -23,7 +23,8 @@ function errorResponse(message, response){
         "count-correct": "error",
         "total-correct": "error",
         "count-incorrect": "error",
-        "total-incorrect": "error"
+        "total-incorrect": "error",
+        chatResponse: chatResponse || ""
     }
 }
 
@@ -52,9 +53,11 @@ async function evaluate(unevaluatedResponse) {
     const foundArticle = articleIsContained(unevaluatedResponse.Articles, goldenAnswer.articleIds);
     const evalQuery = `${goldenAnswer.points}\nAnswer: """${unevaluatedResponse.Response}"""`
     
+    let chatResponse = ""
+
     try {
-        const limitedGetChatResponse = functionLimiter(getChatResponse, 500)
-        const chatResponse = await limitedGetChatResponse(evalQuery)
+        const limitedGetChatResponse = functionLimiter(getChatResponse, 750)
+        chatResponse = await limitedGetChatResponse(evalQuery)
         
         const gptJSON = findLastJsonInString(chatResponse)
         console.log(unevaluatedResponse.Question)
@@ -67,7 +70,7 @@ async function evaluate(unevaluatedResponse) {
             "chatResponse": chatResponse
         };
     } catch (error) {
-        return errorResponse(error.message || "Error during getChatResponse or JsonParse", unevaluatedResponse)
+        return errorResponse(error.message || "Error during getChatResponse or JsonParse", unevaluatedResponse, chatResponse)
     }
 }
 
