@@ -26,8 +26,6 @@ export const goldenAnswers = [
         articleIds: [19487],
         points: 
         `Correct-Points: """
-            - The row style property is used to change the size of the rows
-            - The column style property is used to change the size of the columns
             - The values for the row style property can be expressed using %, dip, or pd
             - The values for the column style property can be expressed using %, dip, or pd        
         """
@@ -37,7 +35,7 @@ export const goldenAnswers = [
         """`,
         evaluateJSON: {
             green:{
-                minimumCorrect: 4,
+                minimumCorrect: 2,
                 maximumIncorrect: 0
             },
             yellow:{
@@ -222,7 +220,7 @@ export const goldenAnswers = [
         articleIds: [42569],
         points: 
         `Correct-Points: """
-        - *The response clearly suggests the addition of a "level" to the Store transaction
+        - *The response clearly suggests the addition of a "level" to the Store transaction 
         - You must right click and then click “Insert level”
         """
         Incorrect-Points: """
@@ -270,10 +268,11 @@ export const goldenAnswers = [
         articleIds: [8352],
         points: 
         `Correct-Points: """
-            - Offers syntax for the Concat function like "Concat(&CongratulationsMessage,&Username,' ')" with the space as the third parameter
+            - Offers syntax for the Concat function 
             - Offers syntax using the + operator like &CongratulationsMessage + ' ' + &Username
         """
         Incorrect-Points: """
+            - Offers syntax like "Concat(&CongratulationsMessage,' ',&Username)" with the space as the second parameter
         """
         `,
         evaluateJSON: {
@@ -296,7 +295,7 @@ export const goldenAnswers = [
             - Offers syntax for the Substring method like "&SocialSecurityNumber.Substring([startIndex], 4) "startIndex": anything that evaluates to a number
         """
         Incorrect-Points: """
-            - *The response uses a length function syntax that isn't "length()" such as "len()", "Len()" or "length"
+            - *The response uses a length function syntax that isn't ".length()" such as "len()", "Len()" or "length" (without the parenthesis)
         """
         `,
         evaluateJSON: {
@@ -337,8 +336,7 @@ export const goldenAnswers = [
         articleIds: [8328, 6852],
         points: 
         `Correct-Points: """
-            - *Explicitly mentions the delete function
-            - The syntax is "Error([errorMessage],[optional_parameteter]) If Delete; where "errorMessage": Any string and "optional_parameter" and be blank or a string
+            - The syntax is "Error([errorMessage],[optional_parameteter]) If Delete [other_conditions]; where "errorMessage": Any string "optional_parameter" and be blank or a string and [other_conditions] can be blank or a string representing other conditions for the if statement
         """
         Incorrect-Points: """
             - *The solution offers a long code sample different from the Error([errorMessage],[optional_parameteter]) sample that is meant to for more advanced error detection and reporting
@@ -346,7 +344,7 @@ export const goldenAnswers = [
         `,
         evaluateJSON: {
             green:{
-                minimumCorrect: 2,
+                minimumCorrect: 1,
                 maximumIncorrect: 0
             },
             yellow:{
@@ -362,9 +360,10 @@ export const goldenAnswers = [
         `Correct-Points: """
             - You should write css-style code in the "styles" section of your design system object to define the "color" property for a particular class
             - Change the "class" of your TextBlock control for the styles you wrote to take effect 
-            - *The response shows syntax similar to [TextBoxName].Class = "[ClassName]" where "TextBoxName" is any string and "ClassName" is any string
+            - *The response explicitly shows syntax similar to [TextBoxName].Class = "[ClassName]" where "TextBoxName" is any string and "ClassName" is any string
         """"
         Incorrect-Points: """
+            - *The response uses the var function like  var([var_name]);
         """
         `,
         evaluateJSON: {
@@ -388,7 +387,7 @@ export const goldenAnswers = [
             - Set the object property of your QueryViewer to the name of the query object that you just created
         """"
         Incorrect-Points: """
-            - *The response explicitly mentions "AttractionName"
+            - *The response explicitly mentions "Attraction"
         """
         `,
         evaluateJSON: {
@@ -407,7 +406,7 @@ export const goldenAnswers = [
         articleIds: [48692, 48693],
         points: 
         `Correct-Points: """
-            - Define a parameter for your design system object to handle color schemes
+            - *The response suggests the need to define a color scheme parameter
             - *The response specifically mentions "tokens" taking different color values depending on the value of your color scheme variable 
             - You can modify the value of your color scheme variable at runtime
             - *The answer provides the syntax "tokens [designSystemName] (color-scheme: [light]|dark)" where "designSystemName": any string
@@ -415,8 +414,8 @@ export const goldenAnswers = [
             - *The answer provides the syntax DesignSystem.setOption("color-scheme", [value]) where "value": Light | Dark
         """"
         Incorrect-Points: """
-            - *The answer contains a list of steps that includes something about converting an existing theme object into a design system object
-            - *The answer contains syntax like "...when @Light, when @Dark
+            - *The answer contains a LIST of steps that includes something about converting an existing theme object into a design system object
+            - *The answer contains syntax "[token_definitions] when @Light, [token_defitinitions] when @Dark" where "token_definitions" are the definitions for the tokens
         """
         `,
         evaluateJSON: {
@@ -440,6 +439,7 @@ export const goldenAnswers = [
             - *The answer provides the syntax "[component_name].Object = CreateFromURL([link])" where "component_name": string, "link": string
         """"
         Incorrect-Points: """
+            - *The answer provides the syntax [component_name].Object = [panel_name] without ever using the keyword "create"
         """
         `,
         evaluateJSON: {

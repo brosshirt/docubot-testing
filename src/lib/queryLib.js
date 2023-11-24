@@ -131,6 +131,8 @@ function getArticles(documents){
 
     for (const document of documents){
 
+        console.log(document)
+
         let goldenArticles = goldenAnswers.map(item => item.articleIds).reduce((acc, current) => acc.concat(current), []);
 
 
