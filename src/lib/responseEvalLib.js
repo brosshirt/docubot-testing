@@ -30,6 +30,10 @@ function errorResponse(message, response, chatResponse){
 
 // Evaluates the response to determine whether it was a real gpt response or some kind of error (tokenLimit, middleware)
 function saiaBotError(response) {
+    if (!response){
+        return "response is empty"
+    }
+    
     const errorConditions = [
         response === "ChatSearch - Failed to contact middleware",
         response.includes("This model's maximum context length is")
@@ -39,7 +43,7 @@ function saiaBotError(response) {
 }
 
 
-
+// This is for the classic response Eval
 async function evaluate(unevaluatedResponse) {
     if (saiaBotError(unevaluatedResponse.Response)){
         return errorResponse("saiaBotError", unevaluatedResponse)
@@ -57,7 +61,7 @@ async function evaluate(unevaluatedResponse) {
 
     try {
         const limitedGetChatResponse = functionLimiter(getChatResponse, 750)
-        chatResponse = await limitedGetChatResponse(evalQuery)
+        chatResponse = await limitedGetChatResponse(evalQuery, "response_eval")
         
         const gptJSON = findLastJsonInString(chatResponse)
         console.log(unevaluatedResponse.Question)
@@ -74,13 +78,50 @@ async function evaluate(unevaluatedResponse) {
     }
 }
 
+// This is for the self eval
+// async function evaluate(unevaluatedResponse) {
+//     if (saiaBotError(unevaluatedResponse.Response)){
+//         console.log("saiaBotErrorBaby")
+//         return errorResponse("saiaBotError", unevaluatedResponse)
+//     }
+    
+//     let chatResponse = ""
+
+//     const evalQuery = `
+//     Question: """
+//         ${unevaluatedResponse.Question}
+//     """
+//     Response: """
+//         ${unevaluatedResponse.Response}
+//     """
+//     Articles: """
+//         ${unevaluatedResponse.fullArticles}
+//     """`
+//     try {
+//         const limitedGetChatResponse = functionLimiter(getChatResponse, 10000)
+//         chatResponse = await limitedGetChatResponse(evalQuery, "self_eval")
+        
+//         const gptJSON = findLastJsonInString(chatResponse)
+//         console.log(unevaluatedResponse.Question)
+//         console.log(gptJSON)
+//         return {
+//             ...unevaluatedResponse, 
+//             ...gptJSON,
+//             "chatResponse": chatResponse
+//         };
+//     } catch (error) {
+//         return errorResponse(error.message || "Error during getChatResponse or JsonParse", unevaluatedResponse, chatResponse)
+//     }
+// }
+
+
 // Prompts the response_eval assistant, returns the response
-function getChatResponse(prompt){
+function getChatResponse(prompt, assistant){
     return fetch(`${saiaMode.BASE_URL}/v1/assistant/text`,{
         method: 'POST',
         headers: saiaMode.HEADERS,
         body: JSON.stringify({
-            assistant: "response_eval",
+            assistant: assistant,
             prompt: prompt
         })
     }).then(response => {

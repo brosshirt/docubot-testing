@@ -201,6 +201,7 @@ export const goldenAnswers = [
         """
         Incorrect-Points: """
         - *The answer explicitly recommends the creation of a new transaction
+        - *The answer includes a for each command
         """
         
         `,
@@ -240,15 +241,17 @@ export const goldenAnswers = [
     },
     {
         question: `Write the code to display the date that is 3 years before the current date`,
-        articleIds: [8317], 
+        articleIds: [8317, 12673], 
         points: 
         `Correct-Points: """
-            - You can use the addYr function
-            - The syntax for the addYr function is "AddYr([date], [yearsToAdd])" where "date": any date object including Today() or Now() and "yearsToAdd": any number 
+            - Mentions that you can use the AddYr function
+            - Offers syntax for the addYr function like "AddYr([date], [yearsToAdd])" where "date": any date object including Today() or Now() and "yearsToAdd": any number 
+            - Mentions that you can use the AddYears method
+            - Offers syntax for the AddYears method like [final_date] = [initial_date].AddYears([years]) where "final_date": date object, "initial_date" is a date object, "years": any number
             - *The response offers a code solution that uses the YMDtoD function and syntax [date].Year() where date is a date object
         """
         Incorrect-Points: """
-            - *The response says "AddYear" or "AddYears" instead of "AddYr"
+            - *The response says "AddYear" instead of "AddYr"
             - *The response uses syntax like Year([date])
         """
         `,

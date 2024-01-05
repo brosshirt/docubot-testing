@@ -12,7 +12,6 @@ export const systemPrompts = {
     Helpful answer in markdown:
     
     `,
-    
     "inverse":
     `
     You are an assistant designed to answer questions about the GeneXus documentation. Read the question first and then look for the answer in the GeneXus documentation. 

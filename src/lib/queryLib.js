@@ -3,9 +3,45 @@ import { systemPrompts } from "../hardCoded/systemPrompts"
 import { saiaMode } from "../hardCoded/saiaModes"
 import { goldenAnswers } from "../hardCoded/goldenAnswers"
 
-
-
-
+// it's just here for reference
+const updateSearchProfileObj = 
+{
+    "name": "string", /* Required */
+    "description": "string",
+    "searchOptions": {
+      "historyCount": "integer",
+      "llm": {
+        "cache": "boolean",
+        "frequencyPenalty": "decimal",
+        "maxTokens": "integer",
+        "modelName": "string",
+        "n": "integer",
+        "presencePenalty": "decimal",
+        "provider": "string",
+        "stream": "boolean",
+        "temperature": "decimal",
+        "topP": "decimal",
+        "verbose": "boolean"
+      },
+      "search": {
+        "k": "integer",
+        "prompt": "string",
+        "returnSourceDocuments": "boolean",
+        "scoreThreshold": "decimal",
+        "template": "string"
+      },
+      "retriever": {
+        "type": "string", /* vectorStore, selfQuery, hyde, contextualCompression */
+        "prompt": "string" /* not needed when using vectorStore */
+      }
+    },
+    "indexOptions": {
+      "chunks": {
+        "chunkOverlap": "integer",
+        "chunkSize": "integer"
+      }
+    }
+  }
 
 
 // Get list of all queries from the querySettings (user input)
@@ -17,6 +53,7 @@ export function getQueriesList(querySettingsState){
 
 // execute each of the chatbot requests
 export async function runQueryProcess(queries, setOutputGraph){
+    console.log(queries)
     for (const query of queries){
         await runQuery(query, setOutputGraph)
     }
@@ -129,6 +166,9 @@ async function handleError(error) {
 function getArticles(documents){
     let output = ""
 
+    console.log("num documents: " + documents.length)
+
+    let curDoc = 1
     for (const document of documents){
 
         console.log(document)
@@ -139,6 +179,7 @@ function getArticles(documents){
         if (goldenArticles.includes(parseInt(document.metadata.id, 10))) {
             // Imprimir description, source y score separados por comas
             console.log(`${document.metadata.description}, ${document.metadata.source}, ${document.score}`);
+            console.log("article rank: " + curDoc)
         }
 
         // console.log("this is the full document", document)
@@ -151,6 +192,7 @@ function getArticles(documents){
         ##################################
         
         `
+        curDoc++
     }
     return output
 }
@@ -167,14 +209,11 @@ function getUpdateProfileBody(query){
             },
             "search": {
               "k": query.k,
-              "prompt": systemPrompts[query.PromptType]
+              "prompt": systemPrompts[query.PromptType],
+              "scoreThreshold": query.scoreThreshold,
             },
             "retriever": {
               "type": "vectorStore", /* vectorStore, selfQuery, hyde, contextualCompression */
-            "prompt": `
-                Please answer the question in the context of GeneXus.
-                Question: {question}
-                Answer:`
             }        
           }
     }
